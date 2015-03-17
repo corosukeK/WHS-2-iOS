@@ -6,6 +6,7 @@ extern NSString* const KeyNotificationFailToConnectPeripheral;
 extern NSString* const KeyNotificationDiscoverPeripheral;
 extern NSString* const KeyNotificationDidConnectPeripheral;
 extern NSString* const KeyNotificationDidDisconnectPeripheral;
+extern NSString* const KeyNotificationDidDiscoverCharacteristicsPeripheral;
 
 extern NSString* const KeyNotificationUserInfoState;
 extern NSString* const KeyNotificationUserInfoPeripheral;

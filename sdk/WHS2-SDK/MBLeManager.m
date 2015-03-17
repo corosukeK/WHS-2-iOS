@@ -7,6 +7,7 @@ NSString* const KeyNotificationFailToConnectPeripheral = @"myBeatDidFailToConnec
 NSString* const KeyNotificationDiscoverPeripheral = @"myBeatDiscoverPeripheral";
 NSString* const KeyNotificationDidConnectPeripheral = @"myBeatDidConnectPeripheral";
 NSString* const KeyNotificationDidDisconnectPeripheral = @"myBeatDidDisconnectPeripheral";
+NSString* const KeyNotificationDidDiscoverCharacteristicsPeripheral = @"myBeatDidDiscoverCharacteristicsPeripheral";
 
 NSString* const KeyNotificationUserInfoState = @"state";
 NSString* const KeyNotificationUserInfoPeripheral = @"peripheral";
@@ -65,8 +66,8 @@ NSString* const KeyNotificationUserInfoPeripheral = @"peripheral";
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     if (![self.foundPeripherals containsObject:peripheral]){
-        self.foundPeripheral = peripheral;
 		[self.foundPeripherals addObject:peripheral];
+        self.foundPeripheral = peripheral;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KeyNotificationDiscoverPeripheral object:nil userInfo:@{KeyNotificationUserInfoPeripheral: peripheral }];
@@ -75,13 +76,13 @@ NSString* const KeyNotificationUserInfoPeripheral = @"peripheral";
 #pragma mark -
 #pragma mark Connection/Disconnection
 - (void)connectPeripheral:(CBPeripheral *)peripheral{
-    if (![peripheral isConnected])
+    if (peripheral.state == CBPeripheralStateDisconnected)
         [self.centralManager connectPeripheral:peripheral options:nil];
 }
 
 - (void)disconnect{
     for (MBWhsService *whs in self.connectedPeripherals){
-        if ([whs.peripheral isConnected]){
+        if (whs.peripheral != CBPeripheralStateDisconnected){
             [self disconnectPeripheral:whs.peripheral];
         }
     }
@@ -177,6 +178,12 @@ NSString* const KeyNotificationUserInfoPeripheral = @"peripheral";
                 }
                 
                 [self setNotify:YES peripheral:peripheral];
+                
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:KeyNotificationDidDiscoverCharacteristicsPeripheral object:nil
+                                                                  userInfo:@{KeyNotificationUserInfoState: [NSNumber numberWithInt:((int)[self.centralManager state])],
+                                                                             KeyNotificationUserInfoPeripheral: peripheral}];
+
                 return;
             }
         }
