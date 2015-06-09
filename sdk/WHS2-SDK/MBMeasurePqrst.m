@@ -52,6 +52,10 @@ const double pqrstInterval = 0.025;
 }
 
 #pragma mark - one received data
+- (NSInteger)getVoltageLevel {
+    return [MBLeConvert convertVoltageLevel:chars[typePqrstReceiveSetting]];
+}
+
 //RRI(1)
 - (double)getEcgValue{
     return [MBLeConvert convertEcg:chars[typePqrstReceiveEcg1]

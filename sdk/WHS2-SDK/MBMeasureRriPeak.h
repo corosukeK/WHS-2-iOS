@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, RriPeakWaveDataFormat) {
 @property (nonatomic) NSDate *receivedDate;
 
 - (id)initWithData:(NSData *)receivedData receivedDate:(NSDate *)receivedDate;
+- (NSInteger)getVoltageLevel;
 - (double)getEcgValue;
 - (double)getTemperatureValue;
 - (double)getAccelerationXValue;

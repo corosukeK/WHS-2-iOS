@@ -50,6 +50,10 @@
 }
 
 #pragma mark - one received data
+// 電池容量レベル
+- (NSInteger)getVoltageLevel {
+    return [MBLeConvert convertVoltageLevel:chars[typeRriPeakReceiveSetting]];
+}
 
 //RRI
 - (double)getEcgValue{

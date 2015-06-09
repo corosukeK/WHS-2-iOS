@@ -44,6 +44,10 @@
 }
 
 #pragma mark - one received data
+- (NSInteger)getVoltageLevel {
+    return [MBLeConvert convertVoltageLevel:chars[typeRriAverageReceiveSetting]];
+}
+
 - (double)getEcgValue{
     return [MBLeConvert convertEcg:chars[typeRriAverageReceiveEcg]
                            char1:chars[typeRriAverageReceiveEcg+1]];

@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, PqrstReceiveDataFormat) {
 @property (nonatomic) NSDate *receivedDate;
 
 - (id)initWithData:(NSData *)receivedData receivedDate:(NSDate *)receivedDate;
+- (NSInteger)getVoltageLevel;
 - (double)getEcgValue;
 - (double)getAccelerationXValue;
 - (double)getAccelerationYValue;
