@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
     s.summary = "TBD"
     s.license = "undefined"
 
-    s.source = { :git => "https://github.com/mybeat/WHS-2-iOS.git", :tag => "0.0.1"}
+    s.source = { :git => "https://github.com/corosukeK/WHS-2-iOS.git", :tag => "0.0.1"}
     s.source_files = "sdk/WHS2-SDK/*.{h,m}"
 
     s.author = "mybeat"
