@@ -5,11 +5,10 @@ Pod::Spec.new do |s|
     s.license = "undefined"
     s.ios.deployment_target = '7.0'
 
-    s.source = { :git => "https://github.com/corosukeK/WHS-2-iOS.git", :tag => "0.0.1"}
+    s.source = { :git => "https://github.com/corosukeK/WHS-2-iOS.git", :tag => "0.0.1"}
     s.source_files = "sdk/WHS2-SDK/*.{h,m}"
 
     s.author = "mybeat"
-    s.summary  = 'Bluetooth Wrapper Library of mybeat'
     s.description = 'Bluetooth Wrapper Library of mybeat'
     s.requires_arc = true
 
